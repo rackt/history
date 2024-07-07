@@ -14,7 +14,7 @@ versions of Webpack and Parcel are also good choices.
 Then you can write your code using JavaScript `import` statements, like this:
 
 ```js
-import { createBrowserHistory } from "history";
+import { createBrowserHistory } from 'history';
 // ...
 ```
 
@@ -22,7 +22,7 @@ If you're using a bundler that doesn't understand JavaScript modules and only
 understands CommonJS, you can use `require` as you would with anything else:
 
 ```js
-var createBrowserHistory = require("history").createBrowserHistory;
+var createBrowserHistory = require('history').createBrowserHistory;
 ```
 
 ## Using `<script>` Tags
@@ -35,9 +35,9 @@ just use the `history.production.min.js` build:
 
 ```html
 <script type="module">
-  // Can also use history.development.js in development
-  import { createBrowserHistory } from "https://unpkg.com/history/history.production.min.js";
-  // ...
+// Can also use history.development.js in development
+import { createBrowserHistory } from 'https://unpkg.com/history/history.production.min.js';
+// ...
 </script>
 ```
 

@@ -8,7 +8,7 @@ they will lose some unsaved changes they've made.
 ```js
 // Block navigation and register a callback that
 // fires when a navigation attempt is blocked.
-let unblock = history.block((tx) => {
+let unblock = history.block(tx => {
   // Navigation was blocked! Let's show a confirmation dialog
   // so the user can decide if they actually want to navigate
   // away and discard changes they've made in the current page.

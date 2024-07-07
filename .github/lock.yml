@@ -11,6 +11,7 @@ lockLabel: false
 
 # Comment to post before locking. Set to `false` to disable
 lockComment: false
+
 # Limit to only `issues` or `pulls`
 # only: issues
 

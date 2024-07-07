@@ -1,24 +1,24 @@
-import expect from "expect";
+import expect from 'expect';
 
-import { execSteps } from "./utils.js";
+import { execSteps } from './utils.js';
 
 export default (history, done) => {
   let steps = [
     ({ location }) => {
       expect(location).toMatchObject({
-        pathname: "/",
+        pathname: '/'
       });
 
       let unblock = history.block();
 
-      history.push("/home");
+      history.push('/home');
 
       expect(history.location).toMatchObject({
-        pathname: "/",
+        pathname: '/'
       });
 
       unblock();
-    },
+    }
   ];
 
   execSteps(steps, history, done);

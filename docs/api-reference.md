@@ -119,7 +119,7 @@ A browser history object keeps track of the browsing history of an application u
 `createBrowserHistory` returns a `BrowserHistory` instance. `window` defaults to [the `defaultView` of the current `document`](https://developer.mozilla.org/en-US/docs/Web/API/Document/defaultView).
 
 ```ts
-import { createBrowserHistory } from "history";
+import { createBrowserHistory } from 'history';
 let history = createBrowserHistory();
 ```
 
@@ -150,8 +150,8 @@ interface Path {
 The `createPath` and `parsePath` functions are useful for creating and parsing URL paths.
 
 ```ts
-createPath({ pathname: "/login", search: "?next=home" }); // "/login?next=home"
-parsePath("/login?next=home"); // { pathname: '/login', search: '?next=home' }
+createPath({ pathname: '/login', search: '?next=home' }); // "/login?next=home"
+parsePath('/login?next=home'); // { pathname: '/login', search: '?next=home' }
 ```
 
 <a name="createhashhistory"></a>
@@ -177,7 +177,7 @@ A hash history object keeps track of the browsing history of an application usin
 The main difference between this and [browser history](#createbrowserhistory) is that a hash history stores the current location in the [`hash` portion of the URL](https://developer.mozilla.org/en-US/docs/Web/API/Location/hash#:~:text=The%20hash%20property%20of%20the,an%20empty%20string%2C%20%22%22%20.), which means that it is not ever sent to the server. This can be useful if you are hosting your site on a domain where you do not have full control over the server routes, or e.g. in an Electron app where you don't want to configure the "server" to serve the same page at different URLs.
 
 ```ts
-import { createHashHistory } from "history";
+import { createHashHistory } from 'history';
 let history = createHashHistory();
 ```
 
@@ -211,11 +211,11 @@ A memory history object keeps track of the browsing history of an application us
 `createMemoryHistory` returns a `MemoryHistory` instance. You can provide initial entries to this history instance through the `initialEntries` property, which defaults to `['/']` (a single location at the root `/` URL). The `initialIndex` defaults to the index of the last item in `initialEntries`.
 
 ```ts
-import { createMemoryHistory } from "history";
+import { createMemoryHistory } from 'history';
 let history = createMemoryHistory();
 // Or, to pre-seed the history instance with some URLs:
 let history = createMemoryHistory({
-  initialEntries: ["/home", "/profile", "/about"],
+  initialEntries: ['/home', '/profile', '/about']
 });
 ```
 

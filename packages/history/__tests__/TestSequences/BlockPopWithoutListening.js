@@ -1,11 +1,11 @@
-import expect from "expect";
+import expect from 'expect';
 
 export default (history, done) => {
   expect(history.location).toMatchObject({
-    pathname: "/",
+    pathname: '/'
   });
 
-  history.push("/home");
+  history.push('/home');
 
   let transitionHookWasCalled = false;
   let unblock = history.block(() => {

@@ -23,11 +23,11 @@ Basic usage looks like this:
 
 ```js
 // Create your own history instance.
-import { createBrowserHistory } from "history";
+import { createBrowserHistory } from 'history';
 let history = createBrowserHistory();
 
 // ... or just import the browser history singleton instance.
-import history from "history/browser";
+import history from 'history/browser';
 
 // Alternatively, if you're using hash history import
 // the hash history singleton instance.
@@ -42,10 +42,10 @@ let unlisten = history.listen(({ location, action }) => {
 });
 
 // Use push to push a new entry onto the history stack.
-history.push("/home", { some: "state" });
+history.push('/home', { some: 'state' });
 
 // Use replace to replace the current entry in the stack.
-history.replace("/logged-in");
+history.replace('/logged-in');
 
 // Use back/forward to navigate one entry back or forward.
 history.back();
@@ -58,7 +58,7 @@ If you're using memory history you'll need to create your own `history` object
 before you can use it.
 
 ```js
-import { createMemoryHistory } from "history";
+import { createMemoryHistory } from 'history';
 let history = createMemoryHistory();
 ```
 
@@ -67,9 +67,9 @@ current `document` (like an iframe), you'll need to create your own browser/hash
 history:
 
 ```js
-import { createBrowserHistory } from "history";
+import { createBrowserHistory } from 'history';
 let history = createBrowserHistory({
-  window: iframe.contentWindow,
+  window: iframe.contentWindow
 });
 ```
 
@@ -134,7 +134,7 @@ unlisten();
 The main history bundle also contains both `createPath` and `parsePath` methods that may be useful when working with URL paths.
 
 ```js
-let pathPieces = parsePath("/the/path?the=query#the-hash");
+let pathPieces = parsePath('/the/path?the=query#the-hash');
 // pathPieces = {
 //   pathname: '/the/path',
 //   search: '?the=query',
