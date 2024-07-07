@@ -1,4 +1,4 @@
-import mock from "jest-mock";
+import mock from 'jest-mock';
 
 export function spyOn(object, method) {
   let original = object[method];
@@ -10,7 +10,7 @@ export function spyOn(object, method) {
     spy,
     destroy() {
       object[method] = original;
-    },
+    }
   };
 }
 
@@ -30,7 +30,7 @@ export function execSteps(steps, history, done) {
   function execNextStep(...args) {
     try {
       let nextStep = steps[index++];
-      if (!nextStep) throw new Error("Test is missing step " + index);
+      if (!nextStep) throw new Error('Test is missing step ' + index);
 
       nextStep(...args);
 
@@ -45,7 +45,7 @@ export function execSteps(steps, history, done) {
 
     execNextStep({
       action: history.action,
-      location: history.location,
+      location: history.location
     });
   } else {
     done();

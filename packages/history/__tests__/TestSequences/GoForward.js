@@ -1,38 +1,38 @@
-import expect from "expect";
+import expect from 'expect';
 
-import { execSteps } from "./utils.js";
+import { execSteps } from './utils.js';
 
 export default (history, done) => {
   let steps = [
     ({ location }) => {
       expect(location).toMatchObject({
-        pathname: "/",
+        pathname: '/'
       });
 
-      history.push("/home");
+      history.push('/home');
     },
     ({ action, location }) => {
-      expect(action).toEqual("PUSH");
+      expect(action).toEqual('PUSH');
       expect(location).toMatchObject({
-        pathname: "/home",
+        pathname: '/home'
       });
 
       history.back();
     },
     ({ action, location }) => {
-      expect(action).toEqual("POP");
+      expect(action).toEqual('POP');
       expect(location).toMatchObject({
-        pathname: "/",
+        pathname: '/'
       });
 
       history.forward();
     },
     ({ action, location }) => {
-      expect(action).toEqual("POP");
+      expect(action).toEqual('POP');
       expect(location).toMatchObject({
-        pathname: "/home",
+        pathname: '/home'
       });
-    },
+    }
   ];
 
   execSteps(steps, history, done);

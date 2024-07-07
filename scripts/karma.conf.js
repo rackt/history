@@ -1,15 +1,15 @@
-var path = require("path");
-var webpack = require("webpack");
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = function (config) {
   var customLaunchers = {
     BS_Chrome: {
-      name: "Chrome",
-      base: "BrowserStack",
-      os: "Windows",
-      os_version: "10",
-      browser: "Chrome",
-      browser_version: "73.0",
+      name: 'Chrome',
+      base: 'BrowserStack',
+      os: 'Windows',
+      os_version: '10',
+      browser: 'Chrome',
+      browser_version: '73.0'
     },
     // BS_ChromeAndroid: {
     //   base: 'BrowserStack',
@@ -18,29 +18,29 @@ module.exports = function (config) {
     //   real_mobile: true
     // },
     BS_Firefox: {
-      name: "Firefox",
-      base: "BrowserStack",
-      os: "Windows",
-      os_version: "10",
-      browser: "Firefox",
-      browser_version: "67.0",
+      name: 'Firefox',
+      base: 'BrowserStack',
+      os: 'Windows',
+      os_version: '10',
+      browser: 'Firefox',
+      browser_version: '67.0'
     },
     BS_Edge: {
-      name: "Edge",
-      base: "BrowserStack",
-      os: "Windows",
-      os_version: "10",
-      browser: "Edge",
-      browser_version: "17.0",
+      name: 'Edge',
+      base: 'BrowserStack',
+      os: 'Windows',
+      os_version: '10',
+      browser: 'Edge',
+      browser_version: '17.0'
     },
     BS_IE11: {
-      name: "IE 11",
-      base: "BrowserStack",
-      os: "Windows",
-      os_version: "10",
-      browser: "IE",
-      browser_version: "11.0",
-    },
+      name: 'IE 11',
+      base: 'BrowserStack',
+      os: 'Windows',
+      os_version: '10',
+      browser: 'IE',
+      browser_version: '11.0'
+    }
     // Safari throws an error if you use replaceState more
     // than 100 times in 30 seconds :/
     // BS_Safari: {
@@ -67,22 +67,22 @@ module.exports = function (config) {
   config.set({
     singleRun: true,
     customLaunchers: customLaunchers,
-    browsers: ["Chrome" /*, 'Firefox'*/],
-    frameworks: ["mocha" /*, 'webpack' */],
-    reporters: ["mocha"],
-    files: ["tests.webpack.js"],
+    browsers: ['Chrome' /*, 'Firefox'*/],
+    frameworks: ['mocha' /*, 'webpack' */],
+    reporters: ['mocha'],
+    files: ['tests.webpack.js'],
     preprocessors: {
-      "tests.webpack.js": ["webpack", "sourcemap"],
+      'tests.webpack.js': ['webpack', 'sourcemap']
     },
     webpack: {
       // TODO: Webpack 4+
       // mode: 'none',
-      devtool: "inline-source-map",
+      devtool: 'inline-source-map',
       resolve: {
-        modules: [path.resolve(__dirname, "../"), "node_modules"],
+        modules: [path.resolve(__dirname, '../'), 'node_modules'],
         alias: {
-          history: path.resolve(__dirname, "../build/history"),
-        },
+          history: path.resolve(__dirname, '../build/history')
+        }
       },
       module: {
         rules: [
@@ -90,40 +90,40 @@ module.exports = function (config) {
             test: /__tests__\/.*\.js$/,
             exclude: /node_modules/,
             use: {
-              loader: "babel-loader",
+              loader: 'babel-loader',
               options: {
-                presets: ["@babel/preset-env"],
-              },
-            },
-          },
-        ],
+                presets: ['@babel/preset-env']
+              }
+            }
+          }
+        ]
       },
       plugins: [
         new webpack.DefinePlugin({
-          "process.env.NODE_ENV": JSON.stringify("test"),
-        }),
-      ],
+          'process.env.NODE_ENV': JSON.stringify('test')
+        })
+      ]
     },
     webpackServer: {
-      noInfo: true,
-    },
+      noInfo: true
+    }
   });
 
   if (process.env.TRAVIS || process.env.USE_CLOUD) {
     config.browsers = Object.keys(customLaunchers);
-    config.reporters = ["dots"];
+    config.reporters = ['dots'];
     config.concurrency = 2;
     config.browserDisconnectTimeout = 10000;
     config.browserDisconnectTolerance = 3;
 
     if (process.env.TRAVIS) {
       config.browserStack = {
-        project: "history",
-        build: process.env.TRAVIS_BRANCH,
+        project: 'history',
+        build: process.env.TRAVIS_BRANCH
       };
     } else {
       config.browserStack = {
-        project: "history",
+        project: 'history'
       };
     }
   }

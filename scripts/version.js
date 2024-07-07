@@ -1,15 +1,15 @@
-const path = require("path");
-const execSync = require("child_process").execSync;
+const path = require('path');
+const execSync = require('child_process').execSync;
 
-const chalk = require("chalk");
-const Confirm = require("prompt-confirm");
-const jsonfile = require("jsonfile");
-const semver = require("semver");
+const chalk = require('chalk');
+const Confirm = require('prompt-confirm');
+const jsonfile = require('jsonfile');
+const semver = require('semver');
 
-const rootDir = path.resolve(__dirname, "..");
+const rootDir = path.resolve(__dirname, '..');
 
 function packageJson(packageName) {
-  return path.join(rootDir, "packages", packageName, "package.json");
+  return path.join(rootDir, 'packages', packageName, 'package.json');
 }
 
 function invariant(cond, message) {
@@ -17,11 +17,13 @@ function invariant(cond, message) {
 }
 
 function ensureCleanWorkingDirectory() {
-  let status = execSync(`git status --porcelain`).toString().trim();
-  let lines = status.split("\n");
+  let status = execSync(`git status --porcelain`)
+    .toString()
+    .trim();
+  let lines = status.split('\n');
   invariant(
-    lines.every((line) => line === "" || line.startsWith("?")),
-    "Working directory is not clean. Please commit or stash your changes."
+    lines.every(line => line === '' || line.startsWith('?')),
+    'Working directory is not clean. Please commit or stash your changes.'
   );
 }
 
@@ -74,7 +76,7 @@ async function run() {
     ensureCleanWorkingDirectory();
 
     // 1. Get the next version number
-    let currentVersion = await getPackageVersion("history");
+    let currentVersion = await getPackageVersion('history');
     let version = semver.valid(givenVersion);
     if (version == null) {
       version = getNextVersion(currentVersion, givenVersion, prereleaseId);
@@ -88,7 +90,7 @@ async function run() {
     if (answer === false) return 0;
 
     // 3. Update history version
-    await updatePackageConfig("history", (config) => {
+    await updatePackageConfig('history', config => {
       config.version = version;
     });
     console.log(chalk.green(`  Updated history to version ${version}`));
@@ -107,6 +109,6 @@ async function run() {
   return 0;
 }
 
-run().then((code) => {
+run().then(code => {
   process.exit(code);
 });
